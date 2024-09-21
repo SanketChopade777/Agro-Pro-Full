@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- site metas -->
+    <title>Agro-Pro | Fertilizer Recommendation System | Team Indra</title>
+    <!-- fevicon -->
+    <link rel="icon" href="../static/favicon.png" type="image/png">
+
+    <style>
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: #BCBBB8;
+            text-align: center;
+            margin: 0;
+            padding: 0;
+        }
+
+        h1 {
+            color: black;
+            margin-top: 20px;
+        }
+
+        form {
+            margin: 50px auto;
+            padding: 20px;
+            background-color: #fff;
+            width: 300px;
+            border-radius: 10px;
+            box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+        }
+
+        label, input {
+            font-size: 18px;
+            margin: 10px 0;
+        }
+
+        input[type="text"] {
+            width: 90%;
+            padding: 8px;
+            margin: 10px 0;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+
+        input[type="submit"] {
+            background-color: #4CAF50;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        input[type="submit"]:hover {
+            background-color: #45a049;
+        }
+
+        .result-container {
+            margin-top: 30px;
+        }
+
+        .result-container img {
+            max-width: 300px;
+            margin: 0 auto;
+            display: block;
+        }
+
+        .result-container p {
+            font-size: 24px;
+            color: #333;
+            margin-top: 20px;
+        }
+
+        .navbar {
+            padding: 20px;
+            background-color: #6b7908;
+        }
+
+
+        .agro {
+            padding: 5px;
+            background-color: rgb(192, 249, 135);
+            border-radius: 10px;
+            width: 150px;
+            height: 40px;
+        }
+
+
+        .agro a {
+            text-decoration: none;
+            font-size: 30px;
+            font-weight: bold;
+            padding: 8px;
+            color: black;
+        }
+
+        .agro:hover{
+      	  text-decoration-line: underline;
+      	  text-decoration-thickness: 3px;
+        }
+
+        .agro span {
+            color: green;
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar">
+        <div class="agro">
+            <a href="#">Agro<span>-Pro</span></a>
+        </div>
+    </nav>
+
+    <h1>Fertilizer Recommendation System 👨‍🌾</h1>
+
+    <form method="post" action="/predict">
+        <label>Nitrogen</label><br>
+        <input type="text" name="Nitrogen" required><br><br>
+
+        <label>Potassium</label><br>
+        <input type="text" name="Potassium" required><br><br>
+
+        <label>Phosphorous</label><br>
+        <input type="text" name="Phosphorous" required><br><br>
+
+        <input type="submit" value="Predict"><br><br>
+    </form>
+
+    <div class="result-container">
+    {% if result %}
+        <!-- Display the fertilizer image -->
+        <img src="{{ url_for('static', filename=result_image) }}" alt="Fertilizer Image">
+        <!-- Display the recommendation message -->
+        <p>The best-suited fertilizer type is: <strong>{{ result }}</strong></p>
+    {% endif %}
+</div>
+
+</body>
+</html>
